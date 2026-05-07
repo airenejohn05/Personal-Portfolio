@@ -86,7 +86,7 @@ const ProjectCard = ({ project, index }: { project: any; index: number }) => {
             href={project.link}
             className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center group-hover:bg-white group-hover:text-black transition-colors duration-300"
           >
-            <ArrowUpRight size={20} className="group-hover:rotate-45 transition-transform duration-300" />
+
           </a>
         </div>
 
