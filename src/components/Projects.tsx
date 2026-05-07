@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { ArrowUpRight } from "lucide-react";
+
 import { motion, useInView } from "framer-motion";
 
 const projects = [
@@ -39,9 +39,9 @@ const projects = [
   },
   {
     num: "05",
-    title: "AI Air Drawing",
-    desc: "Real-time AI system allowing users to draw in air with CNN shape prediction.",
-    tags: ["OpenCV", "MediaPipe", "TensorFlow"],
+    title: "Serene Homes — Preserving Memories Through Technology",
+    desc: "A secure full-stack digital archive platform designed to help elderly care homes preserve and share residents’ life stories, memories, photos, and videos through a modern cloud-based experience.",
+    tags: ["React.js", "Node.js", "MongoDB", "Netlify Functions", "Cloudinary", "Tailwind CSS", "REST API", "JavaScript", "Responsive Design", "Cloud Media Management"],
     link: "#",
     gradient: "from-red-600/20 to-pink-600/20",
   },
@@ -65,12 +65,11 @@ const ProjectCard = ({ project, index }: { project: any; index: number }) => {
       initial={{ opacity: 0, y: 50 }}
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
       transition={{ duration: 0.8, delay: index * 0.1, ease: [0.76, 0, 0.24, 1] }}
-      className={`group relative flex flex-col p-8 md:p-12 min-h-[400px] border border-white/10 bg-background overflow-hidden ${
-        index % 2 !== 0 ? "md:mt-32" : ""
-      }`}
+      className={`group relative flex flex-col p-8 md:p-12 min-h-[400px] border border-white/10 bg-background overflow-hidden ${index % 2 !== 0 ? "md:mt-32" : ""
+        }`}
     >
       {/* Background slide-in on hover */}
-      <div 
+      <div
         className={`absolute inset-0 bg-gradient-to-br ${project.gradient} translate-y-full group-hover:translate-y-0 transition-transform duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] z-0`}
       />
 
@@ -98,7 +97,7 @@ const ProjectCard = ({ project, index }: { project: any; index: number }) => {
           <p className="text-white/60 text-lg mb-8 max-w-sm group-hover:translate-x-4 transition-transform duration-500 delay-75 ease-out">
             {project.desc}
           </p>
-          
+
           <div className="flex flex-wrap gap-3 group-hover:translate-x-4 transition-transform duration-500 delay-100 ease-out">
             {project.tags.map((tag: string, i: number) => (
               <span key={i} className="text-xs uppercase tracking-wider font-mono text-white/40 border border-white/10 px-3 py-1 rounded-full">
@@ -120,7 +119,7 @@ export function Projects() {
           <h2 className="text-sm uppercase tracking-widest text-accent mb-4 font-mono">
             [ 04 — Selected Work ]
           </h2>
-          <h3 className="text-5xl md:text-7xl font-black uppercase italic drop-shadow-[3px_3px_0_#ED1D24]">Proof of Work.</h3>
+          <h3 className="text-5xl md:text-7xl font-black uppercase italic drop-shadow-[3px_3px_0_#ED1D24]">Projects.</h3>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
