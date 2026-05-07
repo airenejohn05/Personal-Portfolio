@@ -23,7 +23,7 @@ export function About() {
             alt="Airene V John"
             width={1200}
             height={1600}
-            className="w-full h-auto object-contain"
+            className="w-full h-auto max-h-[500px] object-cover md:object-contain rounded-2xl"
             priority
           />
         </div>
@@ -35,7 +35,7 @@ export function About() {
               [ 01 — About Me ]
             </h2>
 
-            <p className="text-xl md:text-2xl leading-relaxed text-white/90 font-medium font-sans">
+            <p className="text-xl md:text-1xl leading-relaxed text-white/90 font-small font-calibri">
               AI enthusiast by day, Marvel fan 24/7. I’m someone who enjoys building
               intelligent systems, exploring new technologies.
               <br /><br />

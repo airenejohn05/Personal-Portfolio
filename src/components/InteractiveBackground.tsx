@@ -153,7 +153,9 @@ export function InteractiveBackground() {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
       foods = [];
-      const numFoods = Math.floor((canvas.width * canvas.height) / 30000); // Slightly fewer foods for better perf
+      const isMobile = window.innerWidth < 768;
+      const multiplier = isMobile ? 50000 : 30000;
+      const numFoods = Math.floor((canvas.width * canvas.height) / multiplier);
       for (let i = 0; i < numFoods; i++) foods.push(new FoodItem());
     };
 

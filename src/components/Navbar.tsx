@@ -35,7 +35,7 @@ export function Navbar() {
       >
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <Link href="/" className="text-xl font-mono tracking-tighter z-50 relative mix-blend-difference">
-            [ KS ]
+            [ AVJ ]
           </Link>
 
           {/* Desktop Nav */}
@@ -92,7 +92,7 @@ export function Navbar() {
             transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] }}
             className="fixed inset-0 z-40 bg-[#0a0b14] flex flex-col justify-center px-8"
           >
-            <ul className="flex flex-col gap-6 text-4xl font-serif">
+            <ul className="text-white text-5xl font-black uppercase italic tracking-tighter flex flex-col gap-6">
               {navLinks.map((link, i) => (
                 <motion.li
                   key={link.name}

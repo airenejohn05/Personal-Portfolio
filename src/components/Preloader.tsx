@@ -44,7 +44,7 @@ export function Preloader() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.2, ease: "easeOut" }}
-              className="text-white text-5xl md:text-7xl font-black uppercase italic tracking-tight drop-shadow-[4px_4px_0_#ED1D24]"
+              className="text-white text-4xl md:text-7xl font-black uppercase italic tracking-tight drop-shadow-[4px_4px_0_#ED1D24]"
             >
               {languages[index]}
             </motion.h1>

@@ -20,7 +20,7 @@ const instrument = Instrument_Serif({
 });
 
 export const metadata: Metadata = {
-  title: "Portfolio | Systems Thinker",
+  title: "Portfolio | Airene V John",
   description: "Personal portfolio of an Engineer and Builder.",
 };
 
