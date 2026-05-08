@@ -14,7 +14,7 @@ export function About() {
   const y = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"]);
 
   return (
-    <section id="about" ref={containerRef} className="py-32 px-6 md:px-12 bg-transparent relative z-40">
+    <section id="about" ref={containerRef} className="py-32 px-6 md:px-12 bg-transparent relative z-10">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-16 items-center">
         {/* Left Column - Image */}
         <div className="w-full md:w-1/2 relative rounded-2xl shadow-2xl shadow-black/50 border border-white/5 overflow-hidden">

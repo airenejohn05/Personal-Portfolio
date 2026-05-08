@@ -32,7 +32,7 @@ export function Contact() {
 
             {/* Gmail Button */}
             <a
-              href="mailto:youremail@gmail.com"
+              href="mailto:airenejohn05@gmail.com"
               className="flex items-center gap-2 px-8 py-4 bg-accent hover:bg-accent-light text-white rounded-full font-medium transition-all hover:scale-105 active:scale-95"
             >
               <Mail size={20} />
@@ -81,7 +81,7 @@ export function Contact() {
               href="mailto:airenejohn05@gmail.com"
               className="text-white/50 hover:text-white transition-all hover:-translate-y-1 transform duration-300"
             >
-              <MessageCircle size={24} />
+              <Mail size={24} />
               <span className="sr-only">Gmail</span>
             </a>
 

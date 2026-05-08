@@ -57,15 +57,7 @@ export function Hero() {
 
       <div className="z-10 max-w-7xl mx-auto w-full">
         <h1 className="text-5xl md:text-8xl lg:text-[9rem] font-black uppercase italic leading-[0.9] tracking-tighter mb-8 text-white drop-shadow-[4px_4px_0_#ED1D24]">
-          <div className="overflow-hidden">
-            <motion.div
-              initial={{ y: "100%" }}
-              animate={{ y: 0 }}
-              transition={{ duration: 1, delay: 1, ease: [0.76, 0, 0.24, 1] }}
-            >
-              Hello,
-            </motion.div>
-          </div>
+
           <div className="overflow-hidden h-[1.2em]">
             <motion.div
               initial={{ y: "100%" }}

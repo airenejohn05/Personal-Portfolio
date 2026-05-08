@@ -29,8 +29,9 @@ export function Navbar() {
     <>
       <header
         className={cn(
-          "fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out border-b border-transparent px-6 md:px-12 py-6",
-          scrolled && "bg-[#0a0b14]/70 backdrop-blur-md border-white/5 py-4"
+          "fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ease-out border-b border-transparent px-6 md:px-12 py-6",
+          (scrolled || mobileMenuOpen) && "bg-[#0a0b14] backdrop-blur-md border-white/5 py-4",
+          scrolled && !mobileMenuOpen && "bg-[#0a0b14]/70"
         )}
       >
         <div className="max-w-7xl mx-auto flex items-center justify-between">
@@ -90,7 +91,7 @@ export function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: "-100%" }}
             transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] }}
-            className="fixed inset-0 z-40 bg-[#0a0b14] flex flex-col justify-center px-8"
+            className="fixed inset-0 z-[90] bg-[#0a0b14] flex flex-col justify-center px-8"
           >
             <ul className="text-white text-5xl font-black uppercase italic tracking-tighter flex flex-col gap-6">
               {navLinks.map((link, i) => (
@@ -124,7 +125,7 @@ export function Navbar() {
                   Resume
                 </a>
                 <a
-                  href="#contact"
+                  href="mailto:airenejohn05@gmail.com"
                   className="inline-block px-6 py-4 text-center bg-accent text-white rounded-full font-sans text-lg"
                 >
                   Contact

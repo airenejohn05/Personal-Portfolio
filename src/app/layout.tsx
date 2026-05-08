@@ -38,8 +38,8 @@ export default function RootLayout({
         <div className="noise-overlay" />
         <CustomCursor />
         <Preloader />
+        <Navbar />
         <SmoothScroll>
-          <Navbar />
           {children}
         </SmoothScroll>
       </body>
