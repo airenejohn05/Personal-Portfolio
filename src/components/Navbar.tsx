@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence, useScroll, useSpring } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { asset } from "@/lib/paths";
 
 const navLinks = [
   { name: "About", id: "about" },
@@ -12,7 +13,7 @@ const navLinks = [
   { name: "Projects", id: "projects" },
 ];
 
-const RESUME = "/Resume-%20Airene%20V%20John.pdf";
+const RESUME = asset("/Resume-%20Airene%20V%20John.pdf");
 const EMAIL = "mailto:airenejohn05@gmail.com";
 
 export function Navbar() {

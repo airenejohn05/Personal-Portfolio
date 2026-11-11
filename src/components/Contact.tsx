@@ -1,5 +1,6 @@
 import { Mail, FileText } from "lucide-react";
 import { Reveal } from "./Reveal";
+import { asset } from "@/lib/paths";
 
 const socials = [
   {
@@ -34,7 +35,7 @@ export function Contact() {
               <Mail size={18} aria-hidden="true" /> Say hello
             </a>
             <a
-              href="/Resume-%20Airene%20V%20John.pdf"
+              href={asset("/Resume-%20Airene%20V%20John.pdf")}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 rounded-full border border-white/15 px-8 py-4 font-medium transition-all hover:scale-105 hover:bg-white/10 active:scale-95"

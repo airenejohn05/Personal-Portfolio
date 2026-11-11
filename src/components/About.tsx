@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { asset } from "@/lib/paths";
 import { Reveal, SectionHeading } from "./Reveal";
 
 export function About() {
@@ -11,7 +12,7 @@ export function About() {
           <Reveal>
             <div className="overflow-hidden rounded-3xl border border-line">
               <Image
-                src="/images/abstract.jpg"
+                src={asset("/images/abstract.jpg")}
                 alt="Airene V John"
                 width={1200}
                 height={1600}
