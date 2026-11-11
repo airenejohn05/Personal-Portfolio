@@ -3,28 +3,19 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-const languages = [
-  "Hello", "Hola", "Bonjour", "Ciao", "नमस्ते",
-  "こんにちは", "안녕하세요", "Merhaba", "Olá", "Hei", "Xin chào"
-];
+const greetings = ["Hello", "नमस्ते", "Hola", "こんにちは", "Bonjour"];
 
 export function Preloader() {
   const [index, setIndex] = useState(0);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (index === languages.length - 1) {
-      setTimeout(() => {
-        setLoading(false);
-      }, 1000); // hold the last word a bit
-      return;
+    if (index === greetings.length - 1) {
+      const done = setTimeout(() => setLoading(false), 500);
+      return () => clearTimeout(done);
     }
-
-    const timer = setTimeout(() => {
-      setIndex((prev) => prev + 1);
-    }, index === 0 ? 1000 : 250); // first word holds longer
-
-    return () => clearTimeout(timer);
+    const next = setTimeout(() => setIndex((i) => i + 1), 280);
+    return () => clearTimeout(next);
   }, [index]);
 
   return (
@@ -32,22 +23,22 @@ export function Preloader() {
       {loading && (
         <motion.div
           key="preloader"
-          initial={{ y: 0 }}
-          exit={{ y: "-100vh" }}
-          transition={{ duration: 1.2, ease: [0.76, 0, 0.24, 1] }}
-          className="fixed inset-0 z-[10000] flex items-center justify-center bg-[#050505]"
+          exit={{ opacity: 0, filter: "blur(12px)" }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          className="fixed inset-0 z-[10000] flex items-center justify-center bg-background"
+          aria-hidden="true"
         >
           <AnimatePresence mode="wait">
-            <motion.h1
+            <motion.p
               key={index}
-              initial={{ opacity: 0, y: 10 }}
+              initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.2, ease: "easeOut" }}
-              className="text-white text-4xl md:text-7xl font-black uppercase italic tracking-tight drop-shadow-[4px_4px_0_#ED1D24]"
+              exit={{ opacity: 0, y: -12 }}
+              transition={{ duration: 0.18 }}
+              className="font-serif text-5xl md:text-7xl"
             >
-              {languages[index]}
-            </motion.h1>
+              {greetings[index]}
+            </motion.p>
           </AnimatePresence>
         </motion.div>
       )}

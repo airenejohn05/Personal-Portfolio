@@ -1,12 +1,13 @@
-"use client";
-
 import {
   Code2, Database, Layout, Server, Cpu, Globe,
-  Layers, MonitorSmartphone, Terminal, Boxes,
-  Cloud, Lock
+  Layers, MonitorSmartphone, Terminal, Boxes, LineChart,
+  type LucideIcon,
 } from "lucide-react";
+import { Reveal, SectionHeading } from "./Reveal";
 
-const row1 = [
+type Skill = { name: string; icon: LucideIcon };
+
+const row1: Skill[] = [
   { name: "Python", icon: Terminal },
   { name: "Java", icon: Code2 },
   { name: "JavaScript", icon: Code2 },
@@ -16,10 +17,10 @@ const row1 = [
   { name: "Tailwind CSS", icon: Layers },
 ];
 
-const row2 = [
+const row2: Skill[] = [
   { name: "TensorFlow & Keras", icon: Cpu },
   { name: "Scikit-learn", icon: Cpu },
-  { name: "Prophet & ARIMA", icon: Cloud },
+  { name: "Prophet & ARIMA", icon: LineChart },
   { name: "OpenCV & MediaPipe", icon: MonitorSmartphone },
   { name: "MongoDB", icon: Database },
   { name: "MySQL", icon: Database },
@@ -45,72 +46,51 @@ const capabilities = [
   },
 ];
 
+function Marquee({ items, className }: { items: Skill[]; className: string }) {
+  // Two identical halves so the -50% translate loops seamlessly.
+  return (
+    <div className="marquee overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
+      <div className={`flex w-max ${className}`}>
+        {[0, 1].map((half) => (
+          <ul key={half} className="flex shrink-0 gap-4 pr-4" aria-hidden={half === 1}>
+            {[...items, ...items].map((s, i) => (
+              <li
+                key={i}
+                className="flex shrink-0 items-center gap-3 rounded-full border border-line bg-panel px-6 py-3.5"
+              >
+                <s.icon className="h-5 w-5 text-accent" aria-hidden="true" />
+                <span className="whitespace-nowrap text-lg text-white/80">{s.name}</span>
+              </li>
+            ))}
+          </ul>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export function Skills() {
   return (
-    <section id="skills" className="py-32 bg-transparent overflow-hidden relative z-10">
-      <div className="px-6 md:px-12 mb-16 max-w-7xl mx-auto">
-        <h2 className="text-sm uppercase tracking-widest text-accent mb-4 font-mono">
-          [ 03 — Toolkit ]
-        </h2>
-        <h3 className="text-5xl md:text-7xl font-black uppercase italic drop-shadow-[3px_3px_0_#ED1D24]">Arsenal.</h3>
+    <section id="skills" className="py-28 md:py-40">
+      <div className="mx-auto max-w-7xl px-6 md:px-12">
+        <SectionHeading index="03" label="Toolkit" title="Skills & tools." />
       </div>
 
-      {/* Infinite Marquees */}
-      <div className="flex flex-col gap-8 mb-32 rotate-[-2deg] scale-105">
-        {/* Row 1 */}
-        <div className="flex overflow-hidden relative w-[110vw] -ml-[5vw]">
-          <div className="flex whitespace-nowrap animate-marquee w-max">
-            <div className="flex gap-8 px-4">
-              {[...row1, ...row1, ...row1, ...row1].map((tech, i) => (
-                <div key={`a-${i}`} className="flex items-center gap-4 px-8 py-6 rounded-2xl bg-panel border border-white/10 shrink-0">
-                  <tech.icon className="w-8 h-8 text-accent" />
-                  <span className="text-2xl font-black uppercase italic">{tech.name}</span>
-                </div>
-              ))}
-            </div>
-            <div className="flex gap-8 px-4">
-              {[...row1, ...row1, ...row1, ...row1].map((tech, i) => (
-                <div key={`b-${i}`} className="flex items-center gap-4 px-8 py-6 rounded-2xl bg-panel border border-white/10 shrink-0">
-                  <tech.icon className="w-8 h-8 text-accent" />
-                  <span className="text-2xl font-black uppercase italic">{tech.name}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Row 2 */}
-        <div className="flex overflow-hidden relative w-[110vw] -ml-[5vw]">
-          <div className="flex whitespace-nowrap animate-marquee-reverse w-max">
-            <div className="flex gap-8 px-4">
-              {[...row2, ...row2, ...row2, ...row2].map((tech, i) => (
-                <div key={`c-${i}`} className="flex items-center gap-4 px-8 py-6 rounded-2xl bg-panel border border-white/10 shrink-0">
-                  <tech.icon className="w-8 h-8 text-white/50" />
-                  <span className="text-2xl font-black uppercase italic text-white/80">{tech.name}</span>
-                </div>
-              ))}
-            </div>
-            <div className="flex gap-8 px-4">
-              {[...row2, ...row2, ...row2, ...row2].map((tech, i) => (
-                <div key={`d-${i}`} className="flex items-center gap-4 px-8 py-6 rounded-2xl bg-panel border border-white/10 shrink-0">
-                  <tech.icon className="w-8 h-8 text-white/50" />
-                  <span className="text-2xl font-black uppercase italic text-white/80">{tech.name}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
+      <div className="mb-24 flex flex-col gap-4">
+        <Marquee items={row1} className="animate-marquee" />
+        <Marquee items={row2} className="animate-marquee-reverse" />
       </div>
 
-      {/* Capability Pillars */}
-      <div className="max-w-7xl mx-auto px-6 md:px-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+      <div className="mx-auto max-w-7xl px-6 md:px-12">
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-3 md:gap-12">
           {capabilities.map((cap, i) => (
-            <div key={i} className="flex flex-col border-t border-white/10 pt-8">
-              <span className="text-accent font-mono text-xl mb-6">[{cap.num}]</span>
-              <h4 className="text-3xl font-serif mb-4">{cap.title}</h4>
-              <p className="text-white/60 leading-relaxed">{cap.desc}</p>
-            </div>
+            <Reveal key={cap.num} delay={i * 0.1}>
+              <div className="border-t border-line pt-8">
+                <span className="mb-5 block font-mono text-sm text-accent">{cap.num}</span>
+                <h3 className="mb-3 text-4xl">{cap.title}</h3>
+                <p className="leading-relaxed text-white/60">{cap.desc}</p>
+              </div>
+            </Reveal>
           ))}
         </div>
       </div>

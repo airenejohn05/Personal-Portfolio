@@ -3,129 +3,66 @@
 import { useEffect, useState } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
 
-const ArcReactor = ({ className }: { className?: string }) => (
-  <svg viewBox="0 0 100 100" className={className}>
-    <circle cx="50" cy="50" r="45" stroke="#00FFFF" strokeWidth="6" fill="none" />
-    <circle cx="50" cy="50" r="32" stroke="#00FFFF" strokeWidth="8" strokeDasharray="12 8" fill="none" />
-    <circle cx="50" cy="50" r="15" fill="#FFFFFF" />
-    <circle cx="50" cy="50" r="20" stroke="#00FFFF" strokeWidth="2" fill="none" />
-  </svg>
-);
-
-const Donut = ({ className }: { className?: string }) => (
-  <svg viewBox="0 0 100 100" className={className}>
-    <circle cx="50" cy="50" r="30" stroke="#E8B273" strokeWidth="30" fill="none" />
-    <circle cx="50" cy="50" r="30" stroke="#FF69B4" strokeWidth="24" fill="none" strokeDasharray="180 10" />
-    <line x1="30" y1="25" x2="40" y2="30" stroke="#FFF" strokeWidth="4" strokeLinecap="round" />
-    <line x1="70" y1="30" x2="75" y2="40" stroke="#00FFFF" strokeWidth="4" strokeLinecap="round" />
-    <line x1="25" y1="50" x2="30" y2="60" stroke="#FF0" strokeWidth="4" strokeLinecap="round" />
-    <line x1="60" y1="70" x2="55" y2="75" stroke="#FFF" strokeWidth="4" strokeLinecap="round" />
-    <line x1="80" y1="55" x2="75" y2="50" stroke="#0F0" strokeWidth="4" strokeLinecap="round" />
-  </svg>
-);
-
+/**
+ * A soft ring that glides after the pointer and grows over links/buttons.
+ * It sits on top of the normal cursor (never hides it) and only renders on
+ * devices with a real mouse.
+ */
 export function CustomCursor() {
-  const [cursorVariant, setCursorVariant] = useState("default");
+  const [enabled, setEnabled] = useState(false);
+  const [hovering, setHovering] = useState(false);
+  const [pressed, setPressed] = useState(false);
 
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-  const angle = useMotionValue(0);
-
-  const springConfig = { damping: 25, stiffness: 300, mass: 0.5 };
-  const cursorX = useSpring(mouseX, springConfig);
-  const cursorY = useSpring(mouseY, springConfig);
-  const cursorAngle = useSpring(angle, { damping: 20, stiffness: 200, mass: 0.5 });
+  const x = useMotionValue(-100);
+  const y = useMotionValue(-100);
+  const sx = useSpring(x, { stiffness: 300, damping: 28, mass: 0.5 });
+  const sy = useSpring(y, { stiffness: 300, damping: 28, mass: 0.5 });
 
   useEffect(() => {
-    let lastX = window.innerWidth / 2;
-    let lastY = window.innerHeight / 2;
+    const mq = window.matchMedia("(hover: hover) and (pointer: fine)");
+    const update = () => setEnabled(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
 
-    const moveCursor = (e: MouseEvent) => {
-      const x = e.clientX;
-      const y = e.clientY;
-      
-      mouseX.set(x - 16);
-      mouseY.set(y - 16);
-      
-      const dx = x - lastX;
-      const dy = y - lastY;
-      const distance = Math.sqrt(dx * dx + dy * dy);
-      
-      if (distance > 2) {
-        // Leaf tip points UP initially.
-        // atan2 is 0 at right, 90 at down, 180 at left, -90 at up.
-        // If moving up (-90), we want angle 0. So targetAngle = atan2 + 90.
-        const targetAngle = (Math.atan2(dy, dx) * 180) / Math.PI + 90;
-        
-        const currentAngle = angle.get();
-        // Normalize rotation to take the shortest path
-        let diff = targetAngle - currentAngle;
-        // Adjust diff to be between -180 and 180
-        while (diff < -180) diff += 360;
-        while (diff > 180) diff -= 360;
-        
-        angle.set(currentAngle + diff);
-      }
-      
-      lastX = x;
-      lastY = y;
+  useEffect(() => {
+    if (!enabled) return;
+    const move = (e: PointerEvent) => {
+      x.set(e.clientX);
+      y.set(e.clientY);
     };
-
-    window.addEventListener("mousemove", moveCursor);
-
-    const handleMouseOver = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
-      
-      const isText = ["P", "H1", "H2", "H3", "H4", "H5", "H6", "SPAN", "LI"].includes(target.tagName);
-      const isInteractive = target.closest("a") || target.closest("button") || target.closest("[role='button']");
-
-      if (isInteractive) {
-        setCursorVariant("interactive");
-      } else if (isText) {
-        setCursorVariant("text");
-      } else {
-        setCursorVariant("default");
-      }
+    const over = (e: MouseEvent) => {
+      const el = e.target as Element | null;
+      setHovering(!!el?.closest("a, button, [role='button']"));
     };
-
-    window.addEventListener("mouseover", handleMouseOver);
-
+    const down = () => setPressed(true);
+    const up = () => setPressed(false);
+    window.addEventListener("pointermove", move, { passive: true });
+    window.addEventListener("mouseover", over, { passive: true });
+    window.addEventListener("mousedown", down);
+    window.addEventListener("mouseup", up);
     return () => {
-      window.removeEventListener("mousemove", moveCursor);
-      window.removeEventListener("mouseover", handleMouseOver);
+      window.removeEventListener("pointermove", move);
+      window.removeEventListener("mouseover", over);
+      window.removeEventListener("mousedown", down);
+      window.removeEventListener("mouseup", up);
     };
-  }, [mouseX, mouseY, angle]);
+  }, [enabled, x, y]);
 
-  const variants = {
-    default: {
-      scale: 1,
-      filter: "drop-shadow(0 0 8px rgba(0, 255, 255, 0.6))",
-    },
-    interactive: {
-      scale: 1.5,
-      filter: "drop-shadow(0 0 12px rgba(255, 105, 180, 0.8))",
-    },
-    text: {
-      scale: 0.6,
-      filter: "drop-shadow(0 0 4px rgba(0, 255, 255, 0.6))",
-    },
-  };
-
-  const isDonut = cursorVariant === "interactive";
+  if (!enabled) return null;
 
   return (
     <motion.div
-      className="hidden md:flex fixed top-0 left-0 pointer-events-none z-[9999] w-8 h-8 items-center justify-center"
-      style={{ x: cursorX, y: cursorY, rotate: cursorAngle }}
-      variants={variants}
-      animate={cursorVariant}
-      transition={{ scale: { type: "spring", stiffness: 300, damping: 20 } }}
+      aria-hidden="true"
+      style={{ x: sx, y: sy }}
+      className="pointer-events-none fixed left-0 top-0 z-[10001] mix-blend-difference"
     >
-      {isDonut ? (
-        <Donut className="w-full h-full transform -translate-y-1" />
-      ) : (
-        <ArcReactor className="w-full h-full transform -translate-y-1" />
-      )}
+      <motion.div
+        animate={{ scale: pressed ? 0.8 : hovering ? 2.2 : 1 }}
+        transition={{ type: "spring", stiffness: 300, damping: 22 }}
+        className="-ml-5 -mt-5 h-10 w-10 rounded-full border border-white bg-white/10"
+      />
     </motion.div>
   );
 }
