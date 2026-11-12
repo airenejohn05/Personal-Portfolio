@@ -85,10 +85,10 @@ export function Experience() {
               <Reveal key={exp.company}>
                 <div className="relative">
                   <span className="absolute -left-[2.2rem] top-9 h-2.5 w-2.5 rounded-full bg-accent ring-4 ring-background md:-left-[3.7rem]" />
-                  <GlowCard className="p-7 md:p-10">
+                  <GlowCard className="p-5 sm:p-7 md:p-10">
                     <div className="mb-6 flex flex-col justify-between gap-2 border-b border-line pb-6 md:flex-row md:items-end">
                       <div>
-                        <h3 className="mb-2 text-4xl md:text-5xl">{exp.company}</h3>
+                        <h3 className="mb-2 text-3xl sm:text-4xl md:text-5xl">{exp.company}</h3>
                         <p className="text-white/60">{exp.title}</p>
                       </div>
                       <span className="font-mono text-sm text-accent">{exp.dates}</span>

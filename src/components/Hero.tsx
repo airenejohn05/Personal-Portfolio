@@ -12,8 +12,8 @@ export function Hero() {
   return (
     // Tall wrapper: the sticky inner screen stays put while scroll progress drives the assembly.
     <section id="top" ref={wrapperRef} className="relative h-[190svh] motion-reduce:h-auto">
-    <div className="sticky top-0 flex h-svh flex-col justify-center overflow-hidden px-6 pt-32 motion-reduce:static motion-reduce:min-h-svh motion-reduce:overflow-visible md:px-12 md:pt-44">
-      <div className="pointer-events-none absolute bottom-16 right-2 z-0 w-[min(62vw,36svh)] md:bottom-auto md:right-12 md:top-1/2 md:w-[min(40vw,66svh)] md:-translate-y-[46%]">
+    <div className="sticky top-0 flex h-svh flex-col justify-end overflow-hidden px-6 pb-24 pt-24 motion-reduce:static motion-reduce:min-h-svh motion-reduce:overflow-visible md:justify-center md:px-12 md:pb-0 md:pt-44">
+      <div className="pointer-events-none absolute left-1/2 top-20 z-0 w-[min(78vw,40svh)] -translate-x-1/2 md:left-auto md:right-12 md:top-1/2 md:w-[min(40vw,66svh)] md:translate-x-0 md:-translate-y-[46%]">
         <PixelPortrait wrapperRef={wrapperRef} />
       </div>
       <div className="relative z-10 mx-auto w-full max-w-7xl">
@@ -26,7 +26,7 @@ export function Hero() {
           Hello, I&apos;m
         </motion.p>
 
-        <h1 className="fluid-h1 mb-10">
+        <h1 className="fluid-h1 mb-6 md:mb-10">
           {["Airene", "V John"].map((word, i) => (
             <span key={word} className="block overflow-hidden pb-[0.08em]">
               <motion.span

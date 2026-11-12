@@ -59,7 +59,7 @@ export function Projects() {
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
           {projects.map((p, i) => (
             <Reveal key={p.num} delay={(i % 2) * 0.1}>
-              <GlowCard className="group flex h-full min-h-[320px] flex-col justify-between p-8 transition-transform duration-500 hover:-translate-y-1.5 md:p-10">
+              <GlowCard className="group flex h-full min-h-[280px] md:min-h-[320px] flex-col justify-between p-6 transition-transform sm:p-8 duration-500 hover:-translate-y-1.5 md:p-10">
                 <div className="flex items-start justify-between">
                   <span className="font-mono text-sm text-white/40">{p.num}</span>
                   {p.link && (
@@ -76,7 +76,7 @@ export function Projects() {
                 </div>
 
                 <div>
-                  <h3 className="mb-3 text-4xl md:text-6xl">{p.title}</h3>
+                  <h3 className="mb-3 text-3xl sm:text-4xl md:text-6xl">{p.title}</h3>
                   <p className="mb-6 max-w-md leading-relaxed text-white/60">{p.desc}</p>
                   <ul className="flex flex-wrap gap-2">
                     {p.tags.map((t) => (

@@ -47,7 +47,7 @@ export function About() {
 
             <Reveal delay={0.2}>
               <blockquote className="border-l-2 border-accent pl-6">
-                <p className="font-serif text-4xl leading-tight md:text-6xl">
+                <p className="font-serif text-3xl leading-tight sm:text-4xl md:text-6xl">
                   &ldquo;Sometimes you gotta run before you can walk.&rdquo;
                 </p>
                 <footer className="mt-3 font-mono text-xs uppercase tracking-[0.2em] text-accent">Tony Stark</footer>
