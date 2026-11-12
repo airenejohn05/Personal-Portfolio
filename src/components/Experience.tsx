@@ -7,9 +7,29 @@ import { GlowCard } from "./GlowCard";
 
 const experiences = [
   {
+    company: "HealthEdge",
+    title: "Technical Services Engineer Intern",
+    dates: "June 2026 – December 2026",
+    bullets: [
+      "Participated in L1 support ticket grooming, troubleshooting, and issue resolution.",
+      "Assisted in investigating technical issues and providing timely solutions to support smooth operations.",
+    ],
+    tags: ["Internship", "L1 Support", "Troubleshooting"],
+  },
+  {
+    company: "GRD Research Institute",
+    title: "Machine Learning Research Intern",
+    dates: "April 2026 – May 2026",
+    bullets: [
+      "Developed a multimodal cocoon dataset for research and experimentation.",
+      "Conducted research on deep learning models and explored various approaches for cocoon classification and prediction.",
+    ],
+    tags: ["Internship", "Deep Learning", "Research"],
+  },
+  {
     company: "Demetrix Infotech",
     title: "Machine Learning & Application Developer Intern",
-    dates: "Internship",
+    dates: "April 2025 – May 2025",
     bullets: [
       "Worked on predictive modeling, forecasting systems, and data preprocessing pipelines for agricultural datasets.",
       "Implemented forecasting models and created data visualization dashboards.",
