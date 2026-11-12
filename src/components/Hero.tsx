@@ -1,14 +1,22 @@
 "use client";
 
+import { useRef } from "react";
 import { motion } from "framer-motion";
 import { ArrowDown } from "lucide-react";
+import { PixelPortrait } from "./PixelPortrait";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
 export function Hero() {
+  const wrapperRef = useRef<HTMLElement>(null);
   return (
-    <section id="top" className="relative flex min-h-svh flex-col justify-center px-6 pt-32 md:px-12 md:pt-44">
-      <div className="mx-auto w-full max-w-7xl">
+    // Tall wrapper: the sticky inner screen stays put while scroll progress drives the assembly.
+    <section id="top" ref={wrapperRef} className="relative h-[190svh] motion-reduce:h-auto">
+    <div className="sticky top-0 flex h-svh flex-col justify-center overflow-hidden px-6 pt-32 motion-reduce:static motion-reduce:min-h-svh motion-reduce:overflow-visible md:px-12 md:pt-44">
+      <div className="pointer-events-none absolute bottom-16 right-2 z-0 w-[min(62vw,36svh)] md:bottom-auto md:right-12 md:top-1/2 md:w-[min(40vw,66svh)] md:-translate-y-[46%]">
+        <PixelPortrait wrapperRef={wrapperRef} />
+      </div>
+      <div className="relative z-10 mx-auto w-full max-w-7xl">
         <motion.p
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
@@ -55,6 +63,7 @@ export function Hero() {
           <ArrowDown size={22} />
         </motion.span>
       </motion.a>
+    </div>
     </section>
   );
 }

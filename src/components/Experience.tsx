@@ -14,7 +14,7 @@ const experiences = [
       "Participated in L1 support ticket grooming, troubleshooting, and issue resolution.",
       "Assisted in investigating technical issues and providing timely solutions to support smooth operations.",
     ],
-    tags: ["Internship", "L1 Support", "Troubleshooting"],
+    tags: ["Internship", "L1 Support", "Troubleshooting","SQL","Java","Linux"],
   },
   {
     company: "GRD Research Institute",
@@ -24,7 +24,7 @@ const experiences = [
       "Developed a multimodal cocoon dataset for research and experimentation.",
       "Conducted research on deep learning models and explored various approaches for cocoon classification and prediction.",
     ],
-    tags: ["Internship", "Deep Learning", "Research"],
+    tags: ["Internship", "Deep Learning", "Research","Machine Learning","Python"],
   },
   {
     company: "Demetrix Infotech",

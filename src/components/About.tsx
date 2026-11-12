@@ -12,12 +12,13 @@ export function About() {
           <Reveal>
             <div className="overflow-hidden rounded-3xl border border-line">
               <Image
-                src={asset("/images/abstract.jpg")}
+                src={asset("/images/pixel-full.png")}
                 alt="Airene V John"
-                width={1200}
-                height={1600}
+                width={1024}
+                height={1536}
+                style={{ imageRendering: "pixelated" }}
                 sizes="(min-width: 768px) 50vw, 100vw"
-                className="h-auto max-h-[560px] w-full object-cover transition-transform duration-700 hover:scale-105"
+                className="h-auto max-h-[560px] w-full object-contain transition-transform duration-700 hover:scale-105"
               />
             </div>
           </Reveal>
